@@ -3,7 +3,7 @@
 import {ref} from "vue";
 
 const users = ref ([
-  {id: 1, name: 'Эмиль', age: 25},
+  {id: 1, name: 'Эмиль', age: 50},
   {id: 2, name: 'Eva', age: 125},
   {id: 3, name: 'Vally', age: 225},
 ])
@@ -14,10 +14,19 @@ const users = ref ([
     <ul>
       <li v-for="user in users"
       :key="user.id"
-          v-show="user.age > 25"
       >
       {{ user.name}}
-        <sup>{{ user.age}}</sup>
+
+        <sup v-if="user.name !== 'Эмиль'">
+          {{ user.age}}
+        </sup>
+
+        <span v-else-if="user.age === 50">
+          В расцвете сил...
+        </span>
+
+        <span v-else>В возрасте...</span>
+
       </li>
     </ul>
   </div>
