@@ -14,6 +14,7 @@ const users = ref ([
     <ul>
       <li v-for="user in users"
       :key="user.id"
+          v-show="user.age > 25"
       >
       {{ user.name}}
         <sup>{{ user.age}}</sup>
