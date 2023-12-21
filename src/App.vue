@@ -1,4 +1,52 @@
-<!--2 работа с реактивными массивами и объектами (v-for)-->
+<!--
+4 работа с классами
+ -->
+<script setup>
+import {ref} from "vue";
+
+const users = ref ([
+  {id: 1, name: 'Эмиль', age: 50},
+  {id: 2, name: 'Eva', age: 125},
+  {id: 3, name: 'Vally', age: 225},
+])
+</script>
+
+<template>
+  <div>
+    <ul>
+      <li v-for="user in users"
+          :key="user.id"
+      >
+        {{ user.name}}
+
+        <sup :class="{
+          'red': user.age > 100,
+          'fz-24': user.name === 'Eva',
+
+        }">
+          {{ user.age}}
+        </sup>
+
+      </li>
+    </ul>
+  </div>
+
+</template>
+
+<style>
+.red {
+  color: red;
+}
+.fz-24 {
+  font-size: 24px;
+}
+</style>
+
+<!--
+2 работа с реактивными массивами и объектами (v-for)
+ 3 работа с реактивными массивами и объектами (v-if, v-else-if, v-else)
+ -->
+<!--
 <script setup>
 import {ref} from "vue";
 
@@ -32,6 +80,7 @@ const users = ref ([
   </div>
 
 </template>
+-->
 
 
 <!--1 основы с реактивностью (ref, reactive, события)-->
