@@ -1,5 +1,61 @@
-<!-- 6 пример простейшего вычислительного свойства -->
+<!-- 7 поиск по массиву объектов с несколькими параметрами -->
 <script setup>
+import {ref, computed} from "vue";
+
+const products = ref ([
+  {title: 'bananas', price: 113},
+  {title: 'apples', price: 80.1},
+  {title: 'bread', price: 87.9},
+  {title: 'sour', price: 68},
+  {title: 'cream milk', price: 52},
+  {title: 'snacks', price: 104},
+  {title: 'chocolate', price: 21.3},
+  {title: 'carrots', price: 243}
+])
+
+const query = ref('')
+
+const queryProducts = computed(() => {
+
+  let p = products.value;
+  let search = query.value;
+
+  if (search) {
+    p = p.filter((product) => {
+      return  product.title.indexOf(search) !== -1 ||
+          // product.price.toString().indexOf(search) !== -1
+          product.price <=search
+    })
+  }
+
+  return p;
+})
+
+</script>
+
+<template>
+  <div>
+    <input type="search"
+           placeholder="Поиск продуктов..."
+           v-model="query"
+    >
+    <br><br>
+
+    {{ query }}
+
+    <ul>
+      <li v-for="product in queryProducts"
+      :key="product"
+      >
+        {{ product.title }}
+        <sup>{{product.price.toLocaleString()}} &#x20bd</sup>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<!-- 6 пример простейшего вычислительного свойства -->
+<!--<script setup>
 import {ref, computed} from "vue";
 
 const products = ref ([
@@ -40,7 +96,8 @@ const reverseQuery = computed(() => {
       </li>
     </ul>
   </div>
-</template>
+</template>-->
+
 
 <!-- 5 поиск по простому массиву -->
 <!--<script setup>
