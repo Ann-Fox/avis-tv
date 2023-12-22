@@ -11,10 +11,16 @@ const review = reactive({
 })
 
 const stars = [1,2,3,4,5]
+
+const submit = () => {
+  console.log('submit!')
+}
 </script>
 
 <template>
-  <form class="container pt-5 pb-5">
+  <form
+      @submit.prevent.stop="submit"
+      class="container pt-5 pb-5">
     <input type="text"
     v-model="review.author"
     placeholder="What is your name?"
