@@ -1,5 +1,49 @@
-<!-- 5 поиск по простому массиву -->
+<!-- 6 пример простейшего вычислительного свойства -->
 <script setup>
+import {ref, computed} from "vue";
+
+const products = ref ([
+  'bananas',
+  'apples',
+  'bread',
+  'sour',
+  'cream milk',
+  'snacks',
+  'chocolate',
+  'carrots'
+])
+
+const query = ref('')
+
+const queryProducts = computed(() => {
+  return products.value.filter((product) => product.indexOf(query.value) !== -1);
+})
+
+const reverseQuery = computed(() => {
+  return query.value.split('').reverse().join('')
+})
+</script>
+
+<template>
+  <div>
+    <input type="search"
+           placeholder="Поиск продуктов..."
+           v-model="query"
+    >
+    <br><br>
+
+    {{ reverseQuery }}
+
+    <ul>
+      <li v-for="product in queryProducts">
+        {{ product }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<!-- 5 поиск по простому массиву -->
+<!--<script setup>
 import {ref, computed} from "vue";
 
 const products = ref ([
@@ -22,12 +66,12 @@ const queryProducts = computed(() => {
 <template>
   <div>
     <input type="search"
-    placeholder="Поиск продуктов..."
-    v-model="query"
+           placeholder="Поиск продуктов..."
+           v-model="query"
     >
     <br><br>
 
-{{ query }}
+    {{ query }}
 
     <ul>
       <li v-for="product in queryProducts">
@@ -35,7 +79,7 @@ const queryProducts = computed(() => {
       </li>
     </ul>
   </div>
-</template>
+</template>-->
 
 
 <!--4 работа с классами-->
