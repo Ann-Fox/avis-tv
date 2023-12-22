@@ -1,6 +1,7 @@
 <!--#5 Форма отзыва с фото во Vue-->
 <script setup>
-import {computed, reactive, ref} from "vue";
+import {computed, reactive} from "vue";
+import axios from 'axios'
 
 const review = reactive({
   author: '',
@@ -20,7 +21,22 @@ const previewFilePath = computed(() => {
 const stars = [1,2,3,4,5]
 
 const submit = () => {
-  console.log('submit!')
+  console.log('submit!');
+
+  axios.post('/api/review', review, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+    console.log(('Final'))
+  })
 }
 
 const uploadFile = (e) => {
