@@ -6,7 +6,7 @@ const review = reactive({
   author: '',
   stars: null,
   text: '',
-  photos: [],
+  photo: null,
   isRecommended: true
 })
 
@@ -14,6 +14,10 @@ const stars = [1,2,3,4,5]
 
 const submit = () => {
   console.log('submit!')
+}
+
+const uploadFile = (e) => {
+  review.photo = e.target.files[0]
 }
 </script>
 
@@ -47,11 +51,17 @@ const submit = () => {
         {{ star}}
       </label>
     </div>
+
+<!--    Photo-->
     <div class="mb-3 mt-3">
       <label class="form-label">Photo</label>
-      <input class="form-control" type="file">
+      <input
+          class="form-control"
+          type="file"
+          @change="uploadFile">
     </div>
 
+<!--    form-check Советую!/Не советую-->
     <div class="form-check">
       <input
           class="form-check-input"
@@ -75,6 +85,7 @@ const submit = () => {
       </label>
     </div>
 
+<!--button Отправить-->
     <button class="mt-4 btn btn-primary">
       Отправить
     </button>
