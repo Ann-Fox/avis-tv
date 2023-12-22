@@ -1,6 +1,6 @@
 <!--#5 Форма отзыва с фото во Vue-->
 <script setup>
-import { computed, reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 
 const review = reactive({
   author: '',
@@ -10,6 +10,13 @@ const review = reactive({
   isRecommended: true
 })
 
+const previewFilePath = computed(() => {
+  if (review.photo) {
+    return URL.createObjectURL(review.photo)
+  }
+  return '#'
+})
+
 const stars = [1,2,3,4,5]
 
 const submit = () => {
@@ -17,7 +24,8 @@ const submit = () => {
 }
 
 const uploadFile = (e) => {
-  review.photo = e.target.files[0]
+  const [file] = e.target.files;
+  review.photo = file;
 }
 </script>
 
@@ -59,6 +67,8 @@ const uploadFile = (e) => {
           class="form-control"
           type="file"
           @change="uploadFile">
+
+      <img :src="previewFilePath" alt="" class="w-100 mt-2">
     </div>
 
 <!--    form-check Советую!/Не советую-->
