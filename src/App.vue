@@ -36,7 +36,13 @@ const submit = () => {
     <h4>Оценка</h4>
     <div v-for="star in stars"
          :key="star" class="form-check">
-      <input class="form-check-input" type="checkbox" value="" :id="`start${ star }`">
+      <input
+          class="form-check-input"
+          type="checkbox"
+          v-model="review.stars"
+          :true-value="star"
+          :false-value="false"
+          :id="`start${ star }`">
       <label class="form-check-label" :for="`start${ star }`">
         {{ star}}
       </label>
@@ -47,13 +53,23 @@ const submit = () => {
     </div>
 
     <div class="form-check">
-      <input class="form-check-input" type="radio" id="adv1">
+      <input
+          class="form-check-input"
+          type="radio"
+          id="adv1"
+      v-model="review.isRecommended"
+      :value="false">
       <label class="form-check-label" for="adv1">
         Не советую
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" id="adv2" checked>
+      <input
+          class="form-check-input"
+          type="radio"
+          id="adv2"
+          v-model="review.isRecommended"
+      :value="true">
       <label class="form-check-label" for="adv2">
         Советую!
       </label>
