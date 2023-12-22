@@ -1,7 +1,45 @@
-<!--
-4 работа с классами
- -->
+<!-- 5 поиск по простому массиву -->
 <script setup>
+import {ref, computed} from "vue";
+
+const products = ref ([
+  'bananas',
+  'apples',
+  'bread',
+  'sour',
+  'cream milk',
+  'snacks',
+  'chocolate',
+  'carrots'
+])
+
+const query = ref('')
+const queryProducts = computed(() => {
+  return products.value.filter((product) => product.indexOf(query.value) !== -1);
+})
+</script>
+
+<template>
+  <div>
+    <input type="search"
+    placeholder="Поиск продуктов..."
+    v-model="query"
+    >
+    <br><br>
+
+{{ query }}
+
+    <ul>
+      <li v-for="product in queryProducts">
+        {{ product }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+
+<!--4 работа с классами-->
+<!--<script setup>
 import {ref} from "vue";
 
 const users = ref ([
@@ -40,7 +78,7 @@ const users = ref ([
 .fz-24 {
   font-size: 24px;
 }
-</style>
+</style>-->
 
 <!--
 2 работа с реактивными массивами и объектами (v-for)
