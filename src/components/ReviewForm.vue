@@ -37,7 +37,11 @@ export default defineComponent({
             console.log(('Final'))
           })
     }
+
+    const stars = [1,2,3,4,5]
+
      return {
+      stars,
       review,
       submit
     }
@@ -51,7 +55,7 @@ export default defineComponent({
 //   return '#'
 // })
 
-// const stars = [1,2,3,4,5]
+
 //
 // const uploadFile = (e) => {
 //   const [file] = e.target.files;
