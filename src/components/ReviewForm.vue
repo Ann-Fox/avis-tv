@@ -2,10 +2,12 @@
 import {computed, reactive, defineComponent} from "vue";
 import axios from 'axios'
 import UButton from "@/components/UButton.vue";
+import UInput from "@/components/global/UInput.vue";
 
 export default defineComponent({
   name: 'ReviewForm',
   components: {
+    UInput,
     UButton
   },
 
@@ -63,19 +65,28 @@ export default defineComponent({
       @submit.prevent.stop="submit"
       class="container pt-5 pb-5">
 
-    <UInput/>
+    <UInput
+        v-model="review.author"
+        placeholder="What is your name?"
+    />
 
-    <input type="text"
-           v-model="review.author"
-           placeholder="What is your name?"
-           class="form-control mb-3">
-
-    <textarea
+    <UInput
+        type="textarea"
         v-model="review.text"
-        rows="3"
-        class="form-control mb-3"
-        placeholder="Оставьте свой отзыв">
-    </textarea>
+        placeholder="Оставьте свой отзыв"
+    />
+
+<!--    <input type="text"-->
+<!--           v-model="review.author"-->
+<!--           placeholder="What is your name?"-->
+<!--           class="form-control mb-3">-->
+
+<!--    <textarea-->
+<!--        v-model="review.text"-->
+<!--        rows="3"-->
+<!--        class="form-control mb-3"-->
+<!--        placeholder="Оставьте свой отзыв">-->
+<!--    </textarea>-->
 
     <h4>Оценка</h4>
     <div v-for="star in stars"
