@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <div>UButton!!!</div>
+  <button class="mt-4 btn btn-primary">
+    <slot/>
+  </button>
 </template>

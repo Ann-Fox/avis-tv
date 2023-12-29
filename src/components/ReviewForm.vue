@@ -1,47 +1,60 @@
-<script setup>
-import {computed, reactive} from "vue";
+<script>
+import {computed, reactive, defineComponent} from "vue";
 import axios from 'axios'
+import UButton from "@/components/UButton.vue";
 
-const review = reactive({
-  author: '',
-  stars: null,
-  text: '',
-  photo: null,
-  isRecommended: true
-})
+export default defineComponent({
+  name: 'ReviewForm',
+  components: {
+    UButton
+  },
 
-const submit = () => {
-  console.log('submit!');
+  setup(){
+    const review = reactive({
+      author: '',
+      stars: null,
+      text: '',
+      photo: null,
+      isRecommended: true
+    })
+    const submit = () => {
+      console.log('submit!');
 
-  axios.post('/api/review', review, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
+      axios.post('/api/review', review, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+          .finally(() => {
+            console.log(('Final'))
+          })
     }
-  })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        console.log(('Final'))
-      })
-}
-
-const previewFilePath = computed(() => {
-  if (review.photo) {
-    return URL.createObjectURL(review.photo)
+     return {
+      review,
+      submit
+    }
   }
-  return '#'
 })
 
-const stars = [1,2,3,4,5]
+// const previewFilePath = computed(() => {
+//   if (review.photo) {
+//     return URL.createObjectURL(review.photo)
+//   }
+//   return '#'
+// })
 
-const uploadFile = (e) => {
-  const [file] = e.target.files;
-  review.photo = file;
-}
+// const stars = [1,2,3,4,5]
+//
+// const uploadFile = (e) => {
+//   const [file] = e.target.files;
+//   review.photo = file;
+// }
 
 </script>
 
@@ -115,9 +128,10 @@ const uploadFile = (e) => {
     </div>
 
     <!--button Отправить-->
-    <button class="mt-4 btn btn-primary">
+    <UButton>
       Отправить
-    </button>
+    </UButton>
+
 
   </form>
 </template>
