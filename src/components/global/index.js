@@ -1,5 +1,5 @@
 import UInput from "./UInput.vue";
-import UFile from "@/components/global/UFile.vue";
+import UFile from "./UFile.vue";
 import UCheckbox from "@/components/global/UCheckbox.vue";
 import URadio from "@/components/global/URadio.vue";
 

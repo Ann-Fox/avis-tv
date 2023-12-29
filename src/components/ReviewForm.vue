@@ -38,25 +38,6 @@ const previewFilePath = computed(() => {
 
 const stars = [1,2,3,4,5]
 
-// const submit = () => {
-//   console.log('submit!');
-//
-//   axios.post('/api/review', review, {
-//     headers: {
-//       'Content-Type': 'multipart/form-data'
-//     }
-//   })
-//       .then((res) => {
-//         console.log(res);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       })
-//       .finally(() => {
-//         console.log(('Final'))
-//       })
-// }
-
 const uploadFile = (e) => {
   const [file] = e.target.files;
   review.photo = file;

@@ -12,6 +12,6 @@ const app = createApp(App)
 
 app.use(globalComponents);
 
-app.component('UInput', UInput)
+// app.component('UInput', UInput)
 
 app.mount('#app')
