@@ -3,10 +3,12 @@ import {computed, reactive, defineComponent} from "vue";
 import axios from 'axios'
 import UButton from "@/components/UButton.vue";
 import UInput from "@/components/global/UInput.vue";
+import UFile from "@/components/global/UFile.vue";
 
 export default defineComponent({
   name: 'ReviewForm',
   components: {
+    UFile,
     UInput,
     UButton
   },
@@ -47,20 +49,6 @@ export default defineComponent({
     }
   }
 })
-
-// const previewFilePath = computed(() => {
-//   if (review.photo) {
-//     return URL.createObjectURL(review.photo)
-//   }
-//   return '#'
-// })
-
-
-//
-// const uploadFile = (e) => {
-//   const [file] = e.target.files;
-//   review.photo = file;
-// }
 
 </script>
 
@@ -108,15 +96,9 @@ export default defineComponent({
     </div>
 
     <!--    Photo-->
-    <div class="mb-3 mt-3">
-      <label class="form-label">Photo</label>
-      <input
-          class="form-control"
-          type="file"
-          @change="uploadFile">
-
-      <img :src="previewFilePath" alt="" class="w-100 mt-2">
-    </div>
+    <UFile
+    v-model="review.photo"
+    label="Photo"/>
 
     <!--    form-check Советую!/Не советую-->
     <div class="form-check">
